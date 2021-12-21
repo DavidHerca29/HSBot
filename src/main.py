@@ -6,23 +6,31 @@ import cv2 as cv
 import numpy as np
 import random
 import time
+
 from RectCoords import RectCoords
+from src.Constants import *
 from src.Functions import *
 
-POS_ENTRY_PARAMS = (730, 189, 1002, 337)
-POS_ENTRY = RectCoords()
-POS_ENTRY.setRect(730, 189, 1002, 337)
-
-def test():
-    return
-
+"""
+import pyautogui as au
+au.displayMousePosition()
+"""
 
 def verificarInicio():
-    if auto.locateOnScreen("../imgs/duck.png", region=POS_ENTRY_PARAMS, confidence=0.6):
-        auto.moveTo(getRandInt(POS_ENTRY.getx1(), POS_ENTRY.getx2()),
-                    getRandInt(POS_ENTRY.gety1(), POS_ENTRY.gety2()),
-                    duration=getDuration(0.1, 4))
-        auto.click(duration=getDuration(0.1, 0.8))
+    if auto.locateOnScreen("../imgs/duck.png", region=POS_ENTRY_PARAMS, confidence=0.7):
+        moveTo(getRandInt(POS_ENTRY.getx1(), POS_ENTRY.getx2()),
+               getRandInt(POS_ENTRY.gety1(), POS_ENTRY.gety2()),
+               getDuration(0.1, 3))
+        click(getDuration(0.1, 0.75))
+        print("found duck")
+        time.sleep(5)
+    if auto.locateOnScreen("../imgs/Puntodeviaje.png", region=POS_PUNTOVIAJE_PARAMS, confidence=0.7):
+        moveTo(getRandInt(BT_PUNTOVIAJE[0], BT_PUNTOVIAJE[2]),
+               getRandInt(BT_PUNTOVIAJE[1], BT_PUNTOVIAJE[3]),
+               getDuration(0.1, 2))
+        click(getDuration(0.1, 0.75))
+        print("found punto de viaje")
+        time.sleep(5)
     return
 
 
@@ -31,7 +39,6 @@ def main():
     print(POS_ENTRY_PARAMS)
     while True:
         verificarInicio()
-    test()
     return
 
 
